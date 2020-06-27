@@ -46,32 +46,78 @@ router.get('/stats', function(req, res) {
 // db.Workout.collection.insertMany(workoutSeed);
 
 const db = require('../models/index');
+const { json } = require('express');
+
+console.log("db: " + json(db.workout.workout));
 
 router.get('/api/workouts', function(req, res) {  
-
-    console.log("hello");
-
-    db.Day.find()
+    // const query = req.query
+    // console.log(query)
+    db.workout.workout.find()
     .then(database => {
-        res.json({
-        confirmation: 'success',
-        data: database
-        })
+        res.json(database)
     })
     .catch(err => {
         res.json({
             confirmation: 'fail',
-            // message: err.message
         })
     })
-
-    // res.json({
-    //     confirmation: 'success',
-    //     data: 'this is the profile endpoint!' + db
-    // })
 });
 
-// router.get('/api/workouts/:id')
+router.get(`/api/workouts/:id`, function(req, res) {
+    const id = req.params.id
+
+    db.workout.workout.findById(id)
+    .then(database => {
+        res.json(database)
+    })
+    .catch(err => {
+        res.json({
+            confirmation: 'fail',
+        })
+    })
+})
+
+router.post(`/api/workouts/:id`, function(req, res) {
+    const id = req.params.id
+
+    db.workout.workout.findById(id)
+    .then(database => {
+        res.json(database)
+    })
+    .catch(err => {
+        res.json({
+            confirmation: 'fail',
+        })
+    })
+})
+
+router.get(`/api/workouts/range`, function(req, res) {
+    const id = req.params.id
+
+    db.workout.workout.find()
+    .then(database => {
+        res.json(database)
+    })
+    .catch(err => {
+        res.json({
+            confirmation: 'fail',
+        })
+    })
+})
+
+router.post(`/api/workouts`, function(req, res) {
+    
+    db.workout.workout.create(req.body)
+        .then(database => {
+        res.json(database)
+    })
+    .catch(err => {
+        res.json({
+            confirmation: 'fail',
+        })
+    })
+})
 
 module.exports = router;
 

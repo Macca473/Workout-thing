@@ -1,40 +1,48 @@
-// const Mongo = require('mongodb').MongoClient
+// // const Mongo = require('mongodb').MongoClient
 
-var url = "mongodb://localhost/Workout"
+// const mongoose = require('mongoose');
 
-const mongoose = require('mongoose');
+// var url = "mongodb://localhost/workout"
 
-// db.Workout.collection.insertMany(workoutSeed);
+// mongoose.connect(url, {useNewUrlParser: true});
 
-// let db = {}
+// // db.Workout.collection.insertMany(workoutSeed);
 
-// const Workout = new mongoose.Schema({
-//   type: {type:String, trim:true, default:''},
-//   name: {type:String, trim:true, default:''},
-//   duration: {type:Number, default:0},
-//   weight: {type:Number, default:0},
-//   reps: {type:Number, default:0},
-//   sets: {type:Number, default:0}
+// // let db = {}
+
+// let date = new Date().setDate(new Date().getDate());
+
+// console.log(date);
+
+
+// const WorkoutSchema = new mongoose.Schema({
+//   day: {type:Date, default: date},
+//   exercises: [{
+//     type: {type:String, trim:true,required: true},
+//     name: {type:String, trim:true,required: true},
+//     duration: {type:Number, required: true},
+//     weight: {type:Number, default:0},
+//     reps: {type:Number, default:0},
+//     sets: {type:Number, default:0},
+//     distance: {type:Number, default:0}
+//   }]
 // });
 
-const daySchema = new mongoose.Schema({
-  duration: {type:Number, default:0}
-});
+// const WorkoutModel = mongoose.model("workout", WorkoutSchema);
 
-const dayModel = mongoose.model("day", daySchema);
-
-module.exports.Day = dayModel;
-
-// Mongo.connect(url, function(err, db) {
-//     if (err) throw err;
-//     var database = db.db("Workout");
-//     database.createCollection("collection", function(err, res) {
-//       if (err) throw err;
-//       console.log("collection created!");
-//     });
-//     module.exports = mongoose.model('db', db); 
-//     // console.log("db: " + mongoose.model('db', db))
-//   });
+// module.exports.workout = WorkoutModel;
 
 
+// // let date = new Date().getDate();
 
+// // let datejn = date.toJSON();
+
+// // let date = new Date().getDate().toJSON();
+
+// // new Date().setDate(new Date().getDate()-5);
+
+// // let date = new Date().getDate();
+
+module.exports = {
+  workout: require("./workout"),
+};
